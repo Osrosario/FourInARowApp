@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FourInARowApp</string>
+    <string name="welcome_text">Welcome to Four in a Row!</string>
+    <string name="desc">A 6x6 Tic-Tac-Toe Game</string>
+    <string name="rule_1">1. Each player will take turns choosing a location</string>
+    <string name="rule_2">2. Streaks can be horizontal, vertical, and diagonal</string>
+    <string name="rule_3">3. If a player achieves a streak of four, the game ends</string>
+    <string name="bot_name">Amelia</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
