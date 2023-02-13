@@ -23,6 +23,12 @@
         android:id="@+id/gameFragment"
         android:name="edu.quinnipiac.ser210.fourinarowapp.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+
+        <argument
+            android:name="name"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

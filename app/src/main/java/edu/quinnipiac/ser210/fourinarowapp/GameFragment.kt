@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import javax.crypto.EncryptedPrivateKeyInfo
 
 /**
  * A simple [Fragment] subclass.
@@ -16,14 +18,19 @@ class GameFragment : Fragment()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
+        arguments?.let {}
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game, container, false)
+        val view = inflater.inflate(R.layout.fragment_game, container, false)
+        val turnText = view.findViewById<TextView>(R.id.turn_text)
+        val bot_turn = "Opponent is choosing a location..."
+        val player_turn = ", choose a location"
+
+        val name = GameFragmentArgs.fromBundle(requireArguments()).name
+        turnText.text = "$name $player_turn"
+
+        return view
     }
 }

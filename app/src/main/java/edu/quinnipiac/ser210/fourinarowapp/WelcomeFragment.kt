@@ -45,8 +45,11 @@ class WelcomeFragment : Fragment()
         editTextName.addTextChangedListener(nameWatcher)
 
         buttonStart.setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_welcomeFragment_to_gameFragment)
+
+            val name = editTextName.text.toString()
+            val action = WelcomeFragmentDirections.actionWelcomeFragmentToGameFragment(name)
+
+            view.findNavController().navigate(action)
         }
 
         return view
