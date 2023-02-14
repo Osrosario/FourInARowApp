@@ -1,5 +1,6 @@
 package edu.quinnipiac.ser210.fourinarowapp
 
+import FourInARow
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,9 @@ import javax.crypto.EncryptedPrivateKeyInfo
  * Use the [GameFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+val FourInARow = FourInARow()
+
 class GameFragment : Fragment()
 {
     override fun onCreate(savedInstanceState: Bundle?)
@@ -26,10 +30,11 @@ class GameFragment : Fragment()
         val view = inflater.inflate(R.layout.fragment_game, container, false)
         val turnText = view.findViewById<TextView>(R.id.turn_text)
         val bot_turn = "Opponent is choosing a location..."
-        val player_turn = ", choose a location"
 
         val name = GameFragmentArgs.fromBundle(requireArguments()).name
-        turnText.text = "$name $player_turn"
+        val player_turn = "$name, choose a location"
+
+
 
         return view
     }
