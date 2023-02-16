@@ -1,10 +1,5 @@
 import kotlin.random.Random
 
-/**
- * TicTacToe class implements the interface
- * @author osrosario
- * @date 2/2/2023
- */
 class FourInARow : IGame
 {
     /**

@@ -11,11 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.findNavController
 
-/**
- * A simple [Fragment] subclass.
- * Use the [WelcomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WelcomeFragment : Fragment()
 {
     override fun onCreate(savedInstanceState: Bundle?)
