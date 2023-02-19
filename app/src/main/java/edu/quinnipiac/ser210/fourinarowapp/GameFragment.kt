@@ -21,6 +21,7 @@ import javax.crypto.EncryptedPrivateKeyInfo
 val FourInARow = FourInARow()
 var currentState = GameConstants.PLAYING
 var player = GameConstants.BLUE
+var playerName = ""
 
 class GameFragment : Fragment(), View.OnClickListener
 {
@@ -35,8 +36,14 @@ class GameFragment : Fragment(), View.OnClickListener
         val view = inflater.inflate(R.layout.fragment_game, container, false)
         val turnText = view.findViewById<TextView>(R.id.turn_text)
         val name = GameFragmentArgs.fromBundle(requireArguments()).name
+        playerName = name
 
-        turnText.text = "$name, choose a location"
+        turnText.text = "$playerName, choose a location"
+
+        for (i in 0..35)
+        {
+            view.findViewWithTag<Button>("button$i").setOnClickListener(this)
+        }
 
         FourInARow.fillBoard()
 
@@ -45,51 +52,81 @@ class GameFragment : Fragment(), View.OnClickListener
 
     override fun onClick(v: View?)
     {
-        val idToString = v!!.id.toString()
-        val buttonNum = idToString.filter { it.isDigit() }
-
-        if (FourInARow.isBoardFull())
+        when(v!!.id)
         {
-            currentState = GameConstants.TIE
-        }
-        else
-        {
-            var setRow = 0
-            var setCol = 0
-
-            when (player)
-            {
-                GameConstants.BLUE -> {
-
-                    var (row, col) = FourInARow.setMove(player, buttonNum)
-                    setRow = row
-                    setCol = col
-
-                    currentState = FourInARow.checkForWinner(player, setRow, setCol)
-                }
-
-                GameConstants.RED -> {
-
-                    var (row, col) = FourInARow.setMove(player, FourInARow.computerMove())
-                    setRow = row
-                    setCol = col
-
-                    currentState = FourInARow.checkForWinner(player, setRow, setCol)
-                }
+            R.id.button0 -> {
+                val button = v!!.findViewById<Button>(R.id.button0)
+                setBoard(v!!, button)
             }
+        }
+    }
 
-            val button = v as Button
-            button.text = player
-            button.isEnabled = false
+    private fun setBoard(view: View?, button: Button)
+    {
+        var botHasGone = false
 
-            if (currentState == GameConstants.PLAYING)
+        while (!botHasGone)
+        {
+            if (FourInARow.isBoardFull())
             {
+                currentState = GameConstants.TIE
+            }
+            else
+            {
+                var setRow = 0
+                var setCol = 0
+
                 when (player)
                 {
-                    GameConstants.BLUE -> player = GameConstants.RED
-                    GameConstants.RED -> player = GameConstants.BLUE
+                    GameConstants.BLUE -> {
+
+                        val buttonNum = button.tag.toString().filter { it.isDigit() }
+
+                        val turnText = view?.findViewById<TextView>(R.id.turn_text)
+                        turnText?.text = "$playerName, choose a location"
+
+                        var (row, col) = FourInARow.setMove(player, buttonNum)
+                        setRow = row
+                        setCol = col
+
+                        button.text = player
+                        button.isEnabled = false
+                    }
+
+                    GameConstants.RED -> {
+
+                        val button = view?.findViewWithTag<Button>("button${FourInARow.computerMove()}")
+                        val buttonNum = button?.tag.toString().filter { it.isDigit() }
+
+                        val turnText = view?.findViewById<TextView>(R.id.turn_text)
+                        turnText?.text = "Opponent is choosing a location..."
+
+                        var (row, col) = FourInARow.setMove(player, buttonNum)
+                        setRow = row
+                        setCol = col
+
+                        button?.text = player
+                        button?.isEnabled = false
+                    }
+                }
+
+                currentState = FourInARow.checkForWinner(player, setRow, setCol)
+
+                if (currentState == GameConstants.PLAYING)
+                {
+                    when (player)
+                    {
+                        GameConstants.BLUE -> player = GameConstants.RED
+
+                        GameConstants.RED -> {
+                            player = GameConstants.BLUE
+                            botHasGone = true
+                        }
+                    }
                 }
             }
         }
+
+
     }
 }
