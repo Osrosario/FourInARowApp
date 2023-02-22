@@ -44,7 +44,9 @@ class GameFragment : Fragment(), View.OnClickListener
 
         for (i in 0..35)
         {
-            view.findViewWithTag<Button>("$i").setOnClickListener(this)
+           val button = view.findViewWithTag<Button>("$i")
+           button.setOnClickListener(this);
+           buttons.add(button)
         }
 
         FourInARow.fillBoard()
