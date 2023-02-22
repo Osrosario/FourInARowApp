@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
+import org.w3c.dom.Text
 import java.math.BigDecimal
 import javax.crypto.EncryptedPrivateKeyInfo
 import kotlin.random.Random
@@ -27,6 +28,9 @@ val buttons = mutableListOf<Button>()
 
 class GameFragment : Fragment(), View.OnClickListener
 {
+    lateinit var turnText: TextView
+    lateinit var resetButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -36,7 +40,9 @@ class GameFragment : Fragment(), View.OnClickListener
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
-        val turnText = view.findViewById<TextView>(R.id.turn_text)
+        turnText = view.findViewById<TextView>(R.id.turn_text) as TextView
+        resetButton = view.findViewById<Button>(R.id.reset_button) as Button
+
         val name = GameFragmentArgs.fromBundle(requireArguments()).name
         playerName = name
 
@@ -44,10 +50,12 @@ class GameFragment : Fragment(), View.OnClickListener
 
         for (i in 0..35)
         {
-           val button = view.findViewWithTag<Button>("$i")
-           button.setOnClickListener(this);
-           buttons.add(button)
+            val button = view.findViewWithTag<Button>("$i")
+            button.setOnClickListener(this);
+            buttons.add(button)
         }
+
+        resetButton.setOnClickListener(this)
 
         FourInARow.fillBoard()
 
@@ -56,8 +64,26 @@ class GameFragment : Fragment(), View.OnClickListener
 
     override fun onClick(v: View?)
     {
-        val button = v!!.findViewById<Button>(v!!.id)
-        setBoard(button)
+        when (v!!.id)
+        {
+            R.id.reset_button -> {
+
+                for (button in buttons)
+                {
+                    button.isEnabled = true
+                    button.text = "_"
+                }
+
+                FourInARow.fillBoard()
+                turnText.text = "$playerName, choose a location"
+                resetButton.isEnabled = false
+            }
+
+            else -> {
+                val button = v!!.findViewById<Button>(v!!.id)
+                setBoard(button)
+            }
+        }
     }
 
     private fun setBoard(button: Button)
@@ -80,10 +106,6 @@ class GameFragment : Fragment(), View.OnClickListener
                     GameConstants.BLUE -> {
 
                         val buttonNum = button.tag.toString()
-                        FourInARow.locations.removeAt(buttonNum.toInt())
-
-                        val turnText = view?.findViewById<TextView>(R.id.turn_text)
-                        turnText?.text = "$playerName, choose a location"
 
                         var (row, col) = FourInARow.setMove(player, buttonNum)
                         setRow = row
@@ -95,35 +117,79 @@ class GameFragment : Fragment(), View.OnClickListener
 
                     GameConstants.RED -> {
 
-                        val location = FourInARow.locations[Random.nextInt(0, FourInARow.locations.size - 1)]
+                        val location = FourInARow.computerMove()
+
+                        turnText.text = "Opponent is choosing location..."
 
                         var (row, col) = FourInARow.setMove(player, location)
                         setRow = row
                         setCol = col
 
-                        val otherButton = button.findViewWithTag<Button>(location)
-                        otherButton.text = player
-                        otherButton.isEnabled = false
+                        val cpuButton = buttons[location.toInt()]
+                        cpuButton.text = player
+                        cpuButton.isEnabled = false
                     }
                 }
 
                 currentState = FourInARow.checkForWinner(player, setRow, setCol)
 
-                if (currentState == GameConstants.PLAYING)
+                when (currentState)
                 {
-                    when (player)
-                    {
-                        GameConstants.BLUE -> player = GameConstants.RED
+                    GameConstants.PLAYING -> {
 
-                        GameConstants.RED -> {
-                            player = GameConstants.BLUE
-                            botHasGone = true
+                        when (player)
+                        {
+                            GameConstants.BLUE -> {
+
+                                player = GameConstants.RED
+                            }
+
+                            GameConstants.RED -> {
+
+                                player = GameConstants.BLUE
+                                turnText.text = "$playerName, choose a location"
+                                botHasGone = true
+                            }
                         }
+                    }
+
+                    GameConstants.BLUE_WON -> {
+
+                        for (button in buttons)
+                        {
+                            button.isEnabled = false
+                        }
+
+                        turnText.text = "$playerName won!"
+                        resetButton.isEnabled = true
+                        botHasGone = true
+                    }
+
+                    GameConstants.RED_WON -> {
+
+                        for (button in buttons)
+                        {
+                            button.isEnabled = false
+                        }
+
+                        turnText.text = "Computer has won!"
+                        resetButton.isEnabled = true
+                        botHasGone = true
+                    }
+
+                    GameConstants.TIE -> {
+
+                        for (button in buttons)
+                        {
+                            button.isEnabled = false
+                        }
+
+                        turnText.text = "It's a tie!"
+                        resetButton.isEnabled = true
+                        botHasGone = true
                     }
                 }
             }
         }
-
-
     }
 }

@@ -10,7 +10,7 @@ class FourInARow : IGame
     /**
      * An array of strings from 0-35 for comparison and filling the board.
      */
-    val locations = MutableList(36) { i -> (i * 1).toString() }
+    private val locations = Array(36) { i -> (i * 1).toString() }
 
     /**
      * Resets the board if replay is accepted.
@@ -283,4 +283,3 @@ class FourInARow : IGame
         println()
     }
 }
-
