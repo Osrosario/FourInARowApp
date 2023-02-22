@@ -10,7 +10,7 @@ class FourInARow : IGame
     /**
      * An array of strings from 0-35 for comparison and filling the board.
      */
-    private val locations = Array(36) { i -> (i * 1).toString()}
+    val locations = MutableList(36) { i -> (i * 1).toString() }
 
     /**
      * Resets the board if replay is accepted.
@@ -59,14 +59,7 @@ class FourInARow : IGame
                 }
             }
 
-            if (!isMoveSet && player == GameConstants.BLUE)
-            {
-                println()
-                println("Please enter a valid location.")
-                print("Enter a number: ")
-                input = readLine()
-            }
-            else if (!isMoveSet && player == GameConstants.RED)
+            if (!isMoveSet && player == GameConstants.RED)
             {
                 input = Random.nextInt(0, 35).toString()
             }

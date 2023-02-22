@@ -17,11 +17,13 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import java.math.BigDecimal
 import javax.crypto.EncryptedPrivateKeyInfo
+import kotlin.random.Random
 
 val FourInARow = FourInARow()
 var currentState = GameConstants.PLAYING
 var player = GameConstants.BLUE
 var playerName = ""
+val buttons = mutableListOf<Button>()
 
 class GameFragment : Fragment(), View.OnClickListener
 {
@@ -42,7 +44,7 @@ class GameFragment : Fragment(), View.OnClickListener
 
         for (i in 0..35)
         {
-            view.findViewWithTag<Button>("button$i").setOnClickListener(this)
+            view.findViewWithTag<Button>("$i").setOnClickListener(this)
         }
 
         FourInARow.fillBoard()
@@ -53,10 +55,10 @@ class GameFragment : Fragment(), View.OnClickListener
     override fun onClick(v: View?)
     {
         val button = v!!.findViewById<Button>(v!!.id)
-        setBoard(v!!, button)
+        setBoard(button)
     }
 
-    private fun setBoard(view: View?, button: Button)
+    private fun setBoard(button: Button)
     {
         var botHasGone = false
 
@@ -75,7 +77,8 @@ class GameFragment : Fragment(), View.OnClickListener
                 {
                     GameConstants.BLUE -> {
 
-                        val buttonNum = button.tag.toString().filter { it.isDigit() }
+                        val buttonNum = button.tag.toString()
+                        FourInARow.locations.removeAt(buttonNum.toInt())
 
                         val turnText = view?.findViewById<TextView>(R.id.turn_text)
                         turnText?.text = "$playerName, choose a location"
@@ -90,18 +93,15 @@ class GameFragment : Fragment(), View.OnClickListener
 
                     GameConstants.RED -> {
 
-                        val button = view?.findViewWithTag<Button>("button${FourInARow.computerMove()}")
-                        val buttonNum = button?.tag.toString().filter { it.isDigit() }
+                        val location = FourInARow.locations[Random.nextInt(0, FourInARow.locations.size - 1)]
 
-                        val turnText = view?.findViewById<TextView>(R.id.turn_text)
-                        turnText?.text = "Opponent is choosing a location..."
-
-                        var (row, col) = FourInARow.setMove(player, buttonNum)
+                        var (row, col) = FourInARow.setMove(player, location)
                         setRow = row
                         setCol = col
 
-                        button?.text = player
-                        button?.isEnabled = false
+                        val otherButton = button.findViewWithTag<Button>(location)
+                        otherButton.text = player
+                        otherButton.isEnabled = false
                     }
                 }
 

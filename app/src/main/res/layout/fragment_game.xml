@@ -44,7 +44,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button0" />
+            android:tag="0" />
 
         <Space
             android:layout_width="5dp"
@@ -60,7 +60,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button1" />
+            android:tag="1" />
 
         <Space
             android:layout_width="5dp"
@@ -76,7 +76,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button2" />
+            android:tag="2" />
 
         <Space
             android:layout_width="5dp"
@@ -92,7 +92,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button3" />
+            android:tag="3" />
 
         <Space
             android:layout_width="5dp"
@@ -108,7 +108,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button4" />
+            android:tag="4" />
 
         <Space
             android:layout_width="5dp"
@@ -124,7 +124,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button5" />
+            android:tag="5" />
 
         <!---END FIRST ROW-->
 
@@ -138,7 +138,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button6" />
+            android:tag="6" />
 
         <Space
             android:layout_width="5dp"
@@ -154,7 +154,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button7" />
+            android:tag="7" />
 
         <Space
             android:layout_width="5dp"
@@ -170,7 +170,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button8" />
+            android:tag="8" />
 
         <Space
             android:layout_width="5dp"
@@ -186,7 +186,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button9" />
+            android:tag="9" />
 
         <Space
             android:layout_width="5dp"
@@ -202,7 +202,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button10" />
+            android:tag="10" />
 
         <Space
             android:layout_width="5dp"
@@ -218,7 +218,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button11" />
+            android:tag="11" />
 
         <!---END SECOND ROW-->
 
@@ -232,7 +232,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button12" />
+            android:tag="12" />
 
         <Space
             android:layout_width="5dp"
@@ -248,7 +248,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button13" />
+            android:tag="13" />
 
         <Space
             android:layout_width="5dp"
@@ -264,7 +264,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button14" />
+            android:tag="14" />
 
         <Space
             android:layout_width="5dp"
@@ -280,7 +280,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button15" />
+            android:tag="15" />
 
         <Space
             android:layout_width="5dp"
@@ -296,7 +296,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button16" />
+            android:tag="16" />
 
         <Space
             android:layout_width="5dp"
@@ -312,7 +312,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button17" />
+            android:tag="17" />
 
         <!---END THIRD ROW-->
 
@@ -326,7 +326,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button18" />
+            android:tag="18" />
 
         <Space
             android:layout_width="5dp"
@@ -342,7 +342,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button19" />
+            android:tag="19" />
 
         <Space
             android:layout_width="5dp"
@@ -358,7 +358,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button20" />
+            android:tag="20" />
 
         <Space
             android:layout_width="5dp"
@@ -374,7 +374,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button21" />
+            android:tag="21" />
 
         <Space
             android:layout_width="5dp"
@@ -390,7 +390,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button22" />
+            android:tag="22" />
 
         <Space
             android:layout_width="5dp"
@@ -406,7 +406,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button23" />
+            android:tag="23" />
 
         <!---END FOURTH ROW-->
 
@@ -420,7 +420,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button24" />
+            android:tag="24" />
 
         <Space
             android:layout_width="5dp"
@@ -436,7 +436,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button25" />
+            android:tag="25" />
 
         <Space
             android:layout_width="5dp"
@@ -452,7 +452,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button26" />
+            android:tag="26" />
 
         <Space
             android:layout_width="5dp"
@@ -468,7 +468,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button27" />
+            android:tag="27" />
 
         <Space
             android:layout_width="5dp"
@@ -484,7 +484,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button28" />
+            android:tag="28" />
 
         <Space
             android:layout_width="5dp"
@@ -500,7 +500,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button29" />
+            android:tag="29" />
 
         <!--END FIFTH ROW-->
 
@@ -514,7 +514,7 @@
             android:layout_column="0"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button30" />
+            android:tag="30" />
 
         <Space
             android:layout_width="5dp"
@@ -530,7 +530,7 @@
             android:layout_column="2"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button31" />
+            android:tag="31" />
 
         <Space
             android:layout_width="5dp"
@@ -546,7 +546,7 @@
             android:layout_column="4"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button32" />
+            android:tag="32" />
 
         <Space
             android:layout_width="5dp"
@@ -562,7 +562,7 @@
             android:layout_column="6"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button33" />
+            android:tag="33" />
 
         <Space
             android:layout_width="5dp"
@@ -578,7 +578,7 @@
             android:layout_column="8"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button34" />
+            android:tag="34" />
 
         <Space
             android:layout_width="5dp"
@@ -594,7 +594,7 @@
             android:layout_column="10"
             android:textSize="30sp"
             android:text="_"
-            android:tag="button35" />
+            android:tag="35" />
 
     </GridLayout>
 
