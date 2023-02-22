@@ -52,13 +52,8 @@ class GameFragment : Fragment(), View.OnClickListener
 
     override fun onClick(v: View?)
     {
-        when(v!!.id)
-        {
-            R.id.button0 -> {
-                val button = v!!.findViewById<Button>(R.id.button0)
-                setBoard(v!!, button)
-            }
-        }
+        val button = v!!.findViewById<Button>(v!!.id)
+        setBoard(v!!, button)
     }
 
     private fun setBoard(view: View?, button: Button)
