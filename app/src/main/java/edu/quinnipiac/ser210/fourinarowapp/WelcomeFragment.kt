@@ -1,3 +1,16 @@
+/**
+ * Four in a Row: A 6x6 Tic-Tac-Toe Game.
+ *
+ * WelcomeFragment primarily displays information for the user. This fragment displays the title, a
+ * subtitle, an image to fill the white space, the rules of the game, an EditText view, and a button
+ * to navigate to the next fragment. WelcomeFragment uses a TextWatcher to detect changes within the
+ * EditText's to enable the start button. This feature prevents the user from navigating to the next
+ * Fragment without entering a name.
+ *
+ * @author osrosario
+ * @date 2/23/2023
+ */
+
 package edu.quinnipiac.ser210.fourinarowapp
 
 import android.os.Bundle
@@ -21,6 +34,11 @@ class WelcomeFragment : Fragment()
         editTextName = view.findViewById<EditText>(R.id.name_editText)
         val buttonStart = view.findViewById<Button>(R.id.start_button)
 
+        /**
+        Executes when the text in the EditText is changed. The start button within this view is
+        disabled. When the user starts typing, the TextWatcher will check the EditText. The
+        start button will be enabled as long as the EditText is not empty.
+        */
         val nameWatcher = object:TextWatcher
         {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int)

@@ -1,3 +1,9 @@
+/**
+ * FourInARow Class.
+ * @author osrosario
+ * @date 2/23/2023
+ */
+
 import kotlin.random.Random
 
 class FourInARow : IGame

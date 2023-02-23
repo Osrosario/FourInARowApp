@@ -1,3 +1,19 @@
+/**
+ * Four in a Row: 6x6 Tic-Tac-Toe Game.
+ *
+ * GameFragment contains the game board and utilizes functions from the FourInARow class as backend
+ * code. To play, the user must click any available button to place their marker onto the board.
+ * Once a button is clicked, the chosen button will be disabled and the player's marker will replace
+ * the text within the button. To record the player's chosen location, the position will be recorded
+ * into a 2D array provided by the FourInARow class. The game will check for a streak of 4, in all
+ * possible directions, based on the player's last chosen location. The first player to achieve a
+ * streak of 4 wins the game. Ties between players are allowed. The game will enable a reset button
+ * if the player wishes to play again.
+ *
+ * @author osrosario
+ * @date 2/23/2023
+ */
+
 package edu.quinnipiac.ser210.fourinarowapp
 
 import FourInARow
@@ -44,12 +60,6 @@ class GameFragment : Fragment(), View.OnClickListener
         turnText = view.findViewById<TextView>(R.id.turn_text) as TextView
         resetButton = view.findViewById<Button>(R.id.reset_button) as Button
 
-        if (savedInstanceState != null)
-        {
-            turnText.text = savedInstanceState.getString("turnText")
-            resetButton.isEnabled = savedInstanceState.getBoolean("resetButton")
-        }
-
         val name = GameFragmentArgs.fromBundle(requireArguments()).name
         playerName = name
 
@@ -60,16 +70,6 @@ class GameFragment : Fragment(), View.OnClickListener
             val button = view.findViewWithTag<Button>("$i")
             button.setOnClickListener(this);
             buttons.add(button)
-
-            if (savedInstanceState != null)
-            {
-                buttons[i].text = savedInstanceState.getStringArray("locations")!!.elementAt(i)
-                buttons[i].isEnabled = savedInstanceState.getBooleanArray("states")!!.elementAt(i)
-            }
-            else
-            {
-                buttonState.add(button.isEnabled)
-            }
         }
 
         resetButton.setOnClickListener(this)
@@ -104,6 +104,7 @@ class GameFragment : Fragment(), View.OnClickListener
         }
     }
 
+    /*
     override fun onSaveInstanceState(outState: Bundle)
     {
         super.onSaveInstanceState(outState)
@@ -112,7 +113,16 @@ class GameFragment : Fragment(), View.OnClickListener
         outState.putBooleanArray("states", buttonState.toBooleanArray())
         outState.putBoolean("resetButton", resetButton.isEnabled)
     }
+    */
 
+    /**
+     * The setBoard function utilizes functions in the FourInARow class to record the position of
+     * each player. If a button is clicked, the tag of that button is retrieved and used as the
+     * location to search in the 2D array, representing the board. The button becomes disabled once
+     * the player clicks on it. The bulk of the code is set within a while loop that executes
+     * a different body of code that chooses a random button and location for the computer player. All
+     * buttons are disabled and reset button is enabled if there is a tie or a player wins.
+     */
     private fun setBoard(button: Button)
     {
         var botHasGone = false

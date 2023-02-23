@@ -1,7 +1,7 @@
 /**
- * IGame interface.
+ * IGame Interface.
  * @author osrosario
- * @date 2/2/2023
+ * @date 2/23/2023
  */
 interface IGame
 {
