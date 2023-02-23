@@ -1,5 +1,6 @@
 /**
- * Four in a Row: A 6x6 Tic-Tac-Toe Game.
+ * @name Assignment 2
+ * Four in a Row: 6x6 Tic-Tac-Toe Game.
  *
  * WelcomeFragment primarily displays information for the user. This fragment displays the title, a
  * subtitle, an image to fill the white space, the rules of the game, an EditText view, and a button

@@ -1,4 +1,5 @@
 /**
+ * @name Assignment 2
  * Four in a Row: 6x6 Tic-Tac-Toe Game.
  *
  * GameFragment contains the game board and utilizes functions from the FourInARow class as backend

@@ -1,5 +1,7 @@
 /**
+ * @name Assignment 2
  * IGame Interface.
+ *
  * @author osrosario
  * @date 2/23/2023
  */

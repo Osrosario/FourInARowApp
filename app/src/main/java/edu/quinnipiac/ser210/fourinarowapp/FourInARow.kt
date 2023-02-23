@@ -1,5 +1,7 @@
 /**
+ * @name Assignment 2
  * FourInARow Class.
+ *
  * @author osrosario
  * @date 2/23/2023
  */
