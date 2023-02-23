@@ -6,6 +6,11 @@
 interface IGame
 {
     /**
+     * Returns the board
+     */
+    fun getBoard(): Array<String>
+
+    /**
      * Resets the board of all discs by setting all locations with strings
      */
     fun fillBoard()

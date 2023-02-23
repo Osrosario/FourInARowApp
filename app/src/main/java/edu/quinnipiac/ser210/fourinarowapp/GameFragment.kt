@@ -25,6 +25,7 @@ var currentState = GameConstants.PLAYING
 var player = GameConstants.BLUE
 var playerName = ""
 val buttons = mutableListOf<Button>()
+val buttonState = mutableListOf<Boolean>()
 
 class GameFragment : Fragment(), View.OnClickListener
 {
@@ -43,6 +44,12 @@ class GameFragment : Fragment(), View.OnClickListener
         turnText = view.findViewById<TextView>(R.id.turn_text) as TextView
         resetButton = view.findViewById<Button>(R.id.reset_button) as Button
 
+        if (savedInstanceState != null)
+        {
+            turnText.text = savedInstanceState.getString("turnText")
+            resetButton.isEnabled = savedInstanceState.getBoolean("resetButton")
+        }
+
         val name = GameFragmentArgs.fromBundle(requireArguments()).name
         playerName = name
 
@@ -53,6 +60,16 @@ class GameFragment : Fragment(), View.OnClickListener
             val button = view.findViewWithTag<Button>("$i")
             button.setOnClickListener(this);
             buttons.add(button)
+
+            if (savedInstanceState != null)
+            {
+                buttons[i].text = savedInstanceState.getStringArray("locations")!!.elementAt(i)
+                buttons[i].isEnabled = savedInstanceState.getBooleanArray("states")!!.elementAt(i)
+            }
+            else
+            {
+                buttonState.add(button.isEnabled)
+            }
         }
 
         resetButton.setOnClickListener(this)
@@ -80,10 +97,20 @@ class GameFragment : Fragment(), View.OnClickListener
             }
 
             else -> {
+
                 val button = v!!.findViewById<Button>(v!!.id)
                 setBoard(button)
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle)
+    {
+        super.onSaveInstanceState(outState)
+        outState.putString("turnText", turnText.toString())
+        outState.putStringArray("locations", FourInARow.getBoard())
+        outState.putBooleanArray("states", buttonState.toBooleanArray())
+        outState.putBoolean("resetButton", resetButton.isEnabled)
     }
 
     private fun setBoard(button: Button)
@@ -113,6 +140,7 @@ class GameFragment : Fragment(), View.OnClickListener
 
                         button.text = player
                         button.isEnabled = false
+                        buttonState[buttonNum.toInt()] = button.isEnabled
                     }
 
                     GameConstants.RED -> {
@@ -128,6 +156,7 @@ class GameFragment : Fragment(), View.OnClickListener
                         val cpuButton = buttons[location.toInt()]
                         cpuButton.text = player
                         cpuButton.isEnabled = false
+                        buttonState[location.toInt()] = cpuButton.isEnabled
                     }
                 }
 

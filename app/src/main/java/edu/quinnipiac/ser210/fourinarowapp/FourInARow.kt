@@ -5,12 +5,20 @@ class FourInARow : IGame
     /**
      * Fills board with empty strings.
      */
-    private val board = Array(GameConstants.ROWS) { Array<String>(GameConstants.COLS){""} }
+    private val board = Array(GameConstants.ROWS) { Array<String>(GameConstants.COLS){"_"} }
 
     /**
      * An array of strings from 0-35 for comparison and filling the board.
      */
     private val locations = Array(36) { i -> (i * 1).toString() }
+
+    /**
+     * Returns the board
+     */
+    override fun getBoard(): Array<String>
+    {
+        return locations
+    }
 
     /**
      * Resets the board if replay is accepted.
